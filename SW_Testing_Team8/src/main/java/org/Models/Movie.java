@@ -1,13 +1,14 @@
 package org.Models;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Movie {
     private  String title;
     private String movieID;
-    private Vector<String> genres;
+    private ArrayList<String> genres = new ArrayList<>();
 
-    public Movie(String title, String movieID, Vector<String> genres) {
+    public Movie(String title, String movieID, ArrayList<String> genres) {
         this.title = title;
         this.movieID = movieID;
         this.genres = genres;
@@ -18,7 +19,7 @@ public class Movie {
     public String getMovieID() {
         return movieID;
     }
-    public Vector<String> getGenres() {
+    public ArrayList<String> getGenres() {
         return genres;
     }
 }
