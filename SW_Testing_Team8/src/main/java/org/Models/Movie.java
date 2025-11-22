@@ -1,7 +1,6 @@
 package org.Models;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class Movie {
     private  String title;
