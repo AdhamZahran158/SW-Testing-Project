@@ -19,6 +19,7 @@ public class FileWriteHandler {
             {
                 content += m.getTitle()+", ";
             }
+            content+="\n";
         }
     }
 
