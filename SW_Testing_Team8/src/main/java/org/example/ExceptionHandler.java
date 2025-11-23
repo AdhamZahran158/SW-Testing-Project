@@ -10,7 +10,6 @@ public class ExceptionHandler {
     public ExceptionHandler() {
         errorLog = new ArrayList<String>();
     }
-
     public void throwValidationError(String message) {
         errorLog.add(message);
         throw new IllegalArgumentException(message);
