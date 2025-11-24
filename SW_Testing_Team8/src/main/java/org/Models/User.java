@@ -8,6 +8,10 @@ public class User {
     private String name;
     private String id;
     private ArrayList<Movie> likedMovies = new ArrayList<>();
+
+    private ArrayList<String> RecMovies = new ArrayList<>();
+
+
     Random rnd = new Random();
 
     public User(String name, String id)
@@ -15,6 +19,7 @@ public class User {
         this.name = name;
         this.id = id;
     }
+
     public String getName()
     {
         return name;
@@ -30,5 +35,9 @@ public class User {
 
     public void setLikedMovies(ArrayList<Movie> likedMovies) {
         this.likedMovies = likedMovies;
+    }
+
+    public void setRecMovies(ArrayList<String> RecMovies) {
+        this.RecMovies = RecMovies;
     }
 }
