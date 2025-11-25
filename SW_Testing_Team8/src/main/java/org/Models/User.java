@@ -8,16 +8,17 @@ public class User {
     private String name;
     private String id;
     private ArrayList<Movie> likedMovies = new ArrayList<>();
-
+    private ArrayList<String> likedMoviesId = new ArrayList<>();
     private ArrayList<String> RecMovies = new ArrayList<>();
 
 
     Random rnd = new Random();
 
-    public User(String name, String id)
+    public User(String name, String id, ArrayList<String> likedMoviesId)
     {
         this.name = name;
         this.id = id;
+        this.likedMoviesId = likedMoviesId;
     }
 
     public String getName()
