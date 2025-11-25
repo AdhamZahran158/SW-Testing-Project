@@ -17,7 +17,7 @@ public class RecommendationEngine {
         {
             for(Movie m:movies)
             {
-                if (likedMovies.contains(m)) continue;
+                if (RecMovies.contains(m.getTitle())) continue;
 
                 for(String lgenre:lm.getGenres())
                 {
@@ -32,7 +32,7 @@ public class RecommendationEngine {
                         }
 
                     }
-                    if (RecMovies.contains(m)) break;
+                    if (RecMovies.contains(m.getTitle())) break;
                 }
 
 
