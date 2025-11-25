@@ -30,6 +30,8 @@ public class User {
         return id;
     }
 
+    public ArrayList<String> getLikedMoviesID(){ return likedMoviesId; }
+
     public ArrayList<Movie> getLikedMovies() {
         return likedMovies;
     }
