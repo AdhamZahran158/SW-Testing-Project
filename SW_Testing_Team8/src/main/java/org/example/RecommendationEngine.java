@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class RecommendationEngine {
 
-
     public void GetRecommendations(User user, ArrayList<Movie> movies)
     {
         ArrayList<Movie> likedMovies = user.getLikedMovies();
