@@ -60,7 +60,10 @@ public class UserValidator {
                 }
             }
 
-
+            if (Character.isLetter(userId.charAt(userId.length() - 1)) && Character.isLetter(userId.charAt(userId.length() - 2))) {
+                exceptionHandler.throwValidationError("ERROR: User Id " + userId + " is wrong");
+            }
+            // does it allow mixed characters?
             if (userIdList.contains(userId)) {
                 exceptionHandler.throwValidationError("ERROR: User Id " + userId + " is wrong");
             }

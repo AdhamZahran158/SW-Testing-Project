@@ -14,12 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class MovieValidatorTest {
 
     private MovieValidator validator;
-    private ExceptionHandler exceptionHandler;
+//    private ExceptionHandler exceptionHandler;
 
     @BeforeEach
     void setUp() {
         validator = new MovieValidator();
-        exceptionHandler = new ExceptionHandler();
+//        exceptionHandler = new ExceptionHandler();
     }
 
     // Movie Title Tests
@@ -112,8 +112,8 @@ class MovieValidatorTest {
         setupIdList();
         assertFalse(validator.checkUnique3Digits("JKL123"));
     }
-    // Test failed
-
+    // Test failed in the previous version.
+    // Test fixed
 
 
     // Full Movie ID Tests
@@ -133,6 +133,14 @@ class MovieValidatorTest {
     @DisplayName("Invalid full movie ID - lowercase letters")
     void testInvalidFullMovieIdLowercase() {
         assertFalse(validator.validateMovieIdFull("tdk123"));
+    }
+
+    @Test
+    @DisplayName("Invalid full movie ID - special characters")
+    void testInvalidFullMovieIdSpecialChars() {
+        assertFalse(validator.validateMovieIdFull("TDK@123"));
+        assertFalse(validator.validateMovieIdFull("TDK@123"));
+        assertFalse(validator.validateMovieIdFull("@TDK123"));
     }
 
     // Movie Genre Tests
