@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileWriteHandler {
-    String filePath = "Outputs/recommendations.txt";
+    String filePath = "D:\\JavaTest\\TextFiles\\Output.txt";
     String content = "";
     ArrayList<User> users;
     public  FileWriteHandler( ArrayList<User> users)
@@ -15,10 +15,11 @@ public class FileWriteHandler {
         for(User u : users)
         {
             content += u.getName()+", "+u.getId()+"\n";
-            for(Movie m : u.getLikedMovies())
+            for(String rec : u.getRecMovies())
             {
-                content += m.getTitle()+", ";
+                content += rec +", ";
             }
+            content = content.substring(0, content.length()-2);
             content+="\n";
         }
     }
