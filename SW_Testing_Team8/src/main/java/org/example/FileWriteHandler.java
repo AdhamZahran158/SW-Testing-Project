@@ -9,22 +9,30 @@ public class FileWriteHandler {
     String filePath = "D:\\JavaTest\\TextFiles\\Output.txt";
     String content = "";
     ArrayList<User> users;
-    public  FileWriteHandler( ArrayList<User> users)
+    public  FileWriteHandler(ArrayList<User> users)
     {
         this.users = users;
         for(User u : users)
         {
             content += u.getName()+", "+u.getId()+"\n";
-            for(String rec : u.getRecMovies())
+            ArrayList<String> recMovies = u.getRecMovies();
+            if(!recMovies.isEmpty())
             {
-                content += rec +", ";
+                for(String rec : u.getRecMovies())
+                {
+                    content += rec +", ";
+                }
+                content = content.substring(0, content.length()-2);
             }
-            content = content.substring(0, content.length()-2);
             content+="\n";
         }
     }
+    public FileWriteHandler(String error)
+    {
+        this.content = error;
+    }
 
-    void wrtie()
+    void write()
     {
         try(FileWriter writer = new FileWriter(filePath)){
             writer.write(content);

@@ -1,6 +1,7 @@
 package org.Models;
 
 import org.example.RecommendationEngine;
+import org.example.UserValidator;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -30,13 +31,17 @@ public class User {
 
     public ArrayList<Movie> getLikedMovies() { return likedMovies; }
 
-    public void setLikedMovies(ArrayList<Movie> availableMovies) {
+    public boolean setLikedMovies(ArrayList<Movie> availableMovies) {
+        if (likedMoviesId.isEmpty() || likedMoviesId == null) {
+            return false;
+        }
         for (Movie m : availableMovies) {
             for (String id : likedMoviesId) {
                 if (Objects.equals(m.getMovieID(), id))
                     this.likedMovies.add(m);
             }
         }
+        return true;
     }
 
     public void setRecMovies(ArrayList<String> RecMovies) {

@@ -1,6 +1,8 @@
 package org.example;
 
 
+import org.Models.Movie;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +17,15 @@ public class UserValidator {
         userIdList = new ArrayList<>();
     }
 
-    public void setUserIdList(List<String> userIdList) {
-        this.userIdList = userIdList;
+    public void validateLikedMovieList(boolean result) {
+        try{
+        if(!result)
+            exceptionHandler.throwValidationError("ERROR: No Liked Movies Entered");
+        }
+        catch (IllegalArgumentException ex)
+        {
+            exceptionHandler.logError(ex.getMessage());
+        }
     }
 
     public boolean validateUserName(String userName) {

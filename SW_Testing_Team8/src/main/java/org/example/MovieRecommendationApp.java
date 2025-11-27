@@ -23,7 +23,7 @@ public class MovieRecommendationApp {
                 System.out.println(user.getLikedMovies());
             }
             FileWriteHandler fileWriteHandler = new FileWriteHandler(users);
-            fileWriteHandler.wrtie();
+            fileWriteHandler.write();
         }
     }
 
