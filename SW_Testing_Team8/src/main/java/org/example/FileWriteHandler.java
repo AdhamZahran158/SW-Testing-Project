@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileWriteHandler {
-    String filePath = "D:\\JavaTest\\TextFiles\\Output.txt";
+    String filePath = "E:\\GitHub\\SW-Testing-Project\\SW_Testing_Team8\\src\\main\\java\\org\\Outputs\\recommendations.txt";
     String content = "";
     ArrayList<User> users;
     public  FileWriteHandler(ArrayList<User> users)
