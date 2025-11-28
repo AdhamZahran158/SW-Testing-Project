@@ -38,7 +38,7 @@ class FileWriteHandlerTest {
         field.setAccessible(true);
         field.set(handler, testOutputFilePath);
 
-        handler.wrtie();
+        handler.write();
 
         // Read and verify the output
         java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(testOutputFilePath));
@@ -70,7 +70,7 @@ class FileWriteHandlerTest {
         field.setAccessible(true);
         field.set(handler, testOutputFilePath);
 
-        handler.wrtie();
+        handler.write();
 
         java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(testOutputFilePath));
         String line1 = reader.readLine();
@@ -90,7 +90,7 @@ class FileWriteHandlerTest {
     @Test
     @DisplayName("Write user with no recommendations")
     void testWriteUserNoRecommendations() throws Exception {
-        User user = new User("Alice Johnson", "111111111", new ArrayList<>());
+        User user = new User("Alice Johnson", "1111111114", new ArrayList<>());
         user.setRecMovies(new ArrayList<>());
 
         ArrayList<User> users = new ArrayList<>();
@@ -104,13 +104,13 @@ class FileWriteHandlerTest {
         // This should handle empty recommendations gracefully
         // Note: Current implementation may have issues with empty rec list
         try {
-            handler.wrtie();
+            handler.write();
 
             java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(testOutputFilePath));
             String line1 = reader.readLine();
             reader.close();
 
-            assertEquals("Alice Johnson, 111111111", line1);
+            assertEquals("Alice Johnson, 1111111114", line1);
         } catch (Exception e) {
             // Current implementation may throw error on empty recommendations
             // due to substring operation
@@ -133,7 +133,7 @@ class FileWriteHandlerTest {
         field.setAccessible(true);
         field.set(handler, testOutputFilePath);
 
-        handler.wrtie();
+        handler.write();
 
         java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(testOutputFilePath));
         String line1 = reader.readLine();
@@ -160,7 +160,7 @@ class FileWriteHandlerTest {
         field.setAccessible(true);
         field.set(handler, testOutputFilePath);
 
-        handler.wrtie();
+        handler.write();
 
         java.io.File file = new java.io.File(testOutputFilePath);
         assertTrue(file.exists());
@@ -183,7 +183,7 @@ class FileWriteHandlerTest {
         field.setAccessible(true);
         field.set(handler, testOutputFilePath);
 
-        handler.wrtie();
+        handler.write();
 
         java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(testOutputFilePath));
         String line1 = reader.readLine();
