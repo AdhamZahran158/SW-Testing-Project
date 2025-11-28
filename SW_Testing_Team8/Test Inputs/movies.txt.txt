@@ -1,4 +1,14 @@
 The Amazing Spider Man,ADHAM123
-Action,Comedy,Cartoon
+action,comedy,cartoon
 I'm Sam,SAM321
-Drama,Comedy
+drama,comedy
+The Dark Knight,TDK123
+action,thriller,drama
+Inception,I456
+action,scifi,thriller
+The Godfather,TG789
+crime,drama
+Toy Story,TS012
+animation,comedy,family
+Interstellar,I345
+scifi,drama,adventure
