@@ -1,0 +1,458 @@
+# Test Cases for Movie Recommendation System
+
+## Test Case 1: Valid Input (Happy Path)
+
+### movies.txt
+```
+The Dark Knight,TDK123
+action,thriller,drama
+Inception,I456
+action,scifi,thriller
+The Godfather,TG789
+crime,drama
+Toy Story,TS012
+animation,comedy,family
+Interstellar,I345
+scifi,drama,adventure
+```
+
+### users.txt
+```
+Ahmed Hassan,123456789
+TDK123,I456
+Sara Mohamed,987654321
+TG789,TS012
+Omar Ali,111222333
+I456,I345
+```
+
+### Expected Output (recommendations.txt):
+```
+Ahmed Hassan, 123456789
+Inception, Interstellar, The Godfather
+Sara Mohamed, 987654321
+The Godfather, Toy Story
+Omar Ali, 111222333
+The Dark Knight, Inception, Interstellar, The Godfather
+```
+
+---
+
+## Test Case 2: Error - Movie Title Not Starting with Capital
+
+### movies.txt
+```
+the dark knight,TDK123
+action,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,123456789
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: Movie Title the dark knight is wrong
+```
+
+---
+
+## Test Case 3: Error - Movie Title with lowercase in middle
+
+### movies.txt
+```
+The dark Knight,TDK123
+action,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,123456789
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: Movie Title The dark Knight is wrong
+```
+
+---
+
+## Test Case 4: Error - Movie ID Letters Not All Capitals
+
+### movies.txt
+```
+The Dark Knight,Tdk123
+action,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,123456789
+Tdk123
+```
+
+### Expected Output:
+```
+ERROR: Movie Id letters Tdk123 are wrong
+```
+
+---
+
+## Test Case 5: Error - Movie ID Numbers Not Unique
+
+### movies.txt
+```
+The Dark Knight,TDK123
+action,thriller
+The Dark Knight Returns,TDKR123
+action,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,123456789
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: Movie Id numbers TDKR123 aren't unique
+```
+
+---
+
+## Test Case 6: Error - Movie ID Too Short
+
+### movies.txt
+```
+The Dark Knight,TDK12
+action,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,123456789
+TDK12
+```
+
+### Expected Output:
+```
+ERROR: Movie Id letters TDK12 are wrong
+```
+
+---
+
+## Test Case 7: Error - Movie Genre Too Short
+
+### movies.txt
+```
+The Dark Knight,TDK123
+a,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,123456789
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: Movie Genre a is wrong
+```
+
+---
+
+## Test Case 8: Error - Movie Genre Contains Numbers
+
+### movies.txt
+```
+The Dark Knight,TDK123
+action2,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,123456789
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: Movie Genre action2 is wrong
+```
+
+---
+
+## Test Case 9: Error - User Name Starts with Space
+
+### movies.txt
+```
+The Dark Knight,TDK123
+action,thriller
+```
+
+### users.txt
+```
+ Ahmed Hassan,123456789
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: User Name  Ahmed Hassan is wrong
+```
+
+---
+
+## Test Case 10: Error - User Name Contains Numbers
+
+### movies.txt
+```
+The Dark Knight,TDK123
+action,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan2,123456789
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: User Name Ahmed Hassan2 is wrong
+```
+
+---
+
+## Test Case 11: Error - User ID Wrong Length (Too Short)
+
+### movies.txt
+```
+The Dark Knight,TDK123
+action,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,12345678
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: User Id 12345678 is wrong
+```
+
+---
+
+## Test Case 12: Error - User ID Wrong Length (Too Long)
+
+### movies.txt
+```
+The Dark Knight,TDK123
+action,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,1234567890
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: User Id 1234567890 is wrong
+```
+
+---
+
+## Test Case 13: Error - User ID Doesn't Start with Number
+
+### movies.txt
+```
+The Dark Knight,TDK123
+action,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,A12345678
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: User Id A12345678 is wrong
+```
+
+---
+
+## Test Case 14: Error - User ID Ends with Two Letters
+
+### movies.txt
+```
+The Dark Knight,TDK123
+action,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,1234567AB
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: User Id 1234567AB is wrong
+```
+
+---
+
+## Test Case 15: Error - Duplicate User IDs
+
+### movies.txt
+```
+The Dark Knight,TDK123
+action,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,123456789
+TDK123
+Sara Mohamed,123456789
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: User Id 123456789 is wrong
+```
+
+---
+
+## Test Case 16: Valid - User ID Ending with One Letter
+
+### movies.txt
+```
+The Dark Knight,TDK123
+action,thriller
+Inception,I456
+scifi,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,12345678A
+TDK123,I456
+```
+
+### Expected Output (recommendations.txt):
+```
+Ahmed Hassan, 12345678A
+The Dark Knight, Inception
+```
+
+---
+
+## Test Case 17: Valid - Movie Title with Numbers
+
+### movies.txt
+```
+The Dark Knight 2,TDK123
+action,thriller
+```
+
+### users.txt
+```
+Ahmed Hassan,123456789
+TDK123
+```
+
+### Expected Output (recommendations.txt):
+```
+Ahmed Hassan, 123456789
+
+```
+
+---
+
+## Test Case 18: Valid - Multiple Word Title
+
+### movies.txt
+```
+The Lord Of The Rings,TLOTR123
+fantasy,adventure
+```
+
+### users.txt
+```
+Ahmed Hassan,123456789
+TLOTR123
+```
+
+### Expected Output (recommendations.txt):
+```
+Ahmed Hassan, 123456789
+
+```
+
+---
+
+## Test Case 19: Error - First Error Only (Multiple Errors)
+
+### movies.txt
+```
+the dark knight,TDK123
+action,thriller
+inception,I456
+scifi
+```
+
+### users.txt
+```
+ Ahmed Hassan,12345
+TDK123
+```
+
+### Expected Output:
+```
+ERROR: Movie Title the dark knight is wrong
+```
+*Note: Even though "inception" title is also wrong, only the first error is reported*
+
+---
+
+## Test Case 20: Valid - Complex Recommendations
+
+### movies.txt
+```
+The Dark Knight,TDK123
+action,thriller,drama
+Inception,I456
+action,scifi,thriller
+The Godfather,TG789
+crime,drama
+Goodfellas,G012
+crime,drama,thriller
+Pulp Fiction,PF345
+crime,drama
+```
+
+### users.txt
+```
+Ahmed Hassan,123456789
+TDK123,TG789
+```
+
+### Expected Output (recommendations.txt):
+```
+Ahmed Hassan, 123456789
+Inception, Goodfellas, Pulp Fiction, The Godfather
+```
+*User likes "The Dark Knight" (action/thriller/drama) and "The Godfather" (crime/drama), so gets all movies with matching genres*
