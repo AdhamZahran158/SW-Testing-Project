@@ -21,4 +21,6 @@ public class Movie {
     public ArrayList<String> getGenres() {
         return genres;
     }
+
+
 }
