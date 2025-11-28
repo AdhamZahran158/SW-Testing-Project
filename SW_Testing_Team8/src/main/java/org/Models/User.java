@@ -35,13 +35,16 @@ public class User {
         if (likedMoviesId.isEmpty() || likedMoviesId == null) {
             return false;
         }
+        int count = 0;
         for (Movie m : availableMovies) {
             for (String id : likedMoviesId) {
-                if (Objects.equals(m.getMovieID(), id))
+                if (Objects.equals(m.getMovieID(), id)) {
                     this.likedMovies.add(m);
+                    count++;
+                }
             }
         }
-        return true;
+        return count >= likedMoviesId.size();
     }
 
     public void setRecMovies(ArrayList<String> RecMovies) {

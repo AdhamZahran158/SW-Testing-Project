@@ -28,6 +28,8 @@ public class UserValidator {
         }
     }
 
+    public ExceptionHandler getExceptionHandler() {return exceptionHandler;}
+
     public boolean validateUserName(String userName) {
         boolean result = true;
         try {

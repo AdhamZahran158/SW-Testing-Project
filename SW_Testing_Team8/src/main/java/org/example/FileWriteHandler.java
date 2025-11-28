@@ -32,7 +32,7 @@ public class FileWriteHandler {
         this.content = error;
     }
 
-    void write()
+    public void write()
     {
         try(FileWriter writer = new FileWriter(filePath)){
             writer.write(content);

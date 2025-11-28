@@ -146,4 +146,11 @@ class UserValidatorTest {
         assertFalse(validator.validateUserId("1234@5678"));
         assertFalse(validator.validateUserId("12345678@"));
     }
+
+    @Test
+    @DisplayName("Empty Movie List Validation")
+    void testValidateLikedMovieListEmpty() {
+        validator.validateLikedMovieList(false);
+        assertEquals("ERROR: No Liked Movies Entered", validator.getExceptionHandler().getErrorLog());
+    }
 }
