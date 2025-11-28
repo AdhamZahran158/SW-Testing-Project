@@ -148,9 +148,19 @@ class UserValidatorTest {
     }
 
     @Test
+    @DisplayName("Duplicate Error Message Logging")
+    void testDuplicateErrorMsg() {
+        validator.validateUserName(null);
+        validator.getExceptionHandler().printErrorLog();
+        assertEquals(1, validator.getExceptionHandler().getErrorLog().size());
+    }
+
+    @Test
     @DisplayName("Empty Movie List Validation")
     void testValidateLikedMovieListEmpty() {
         validator.validateLikedMovieList(false);
-        assertEquals("ERROR: No Liked Movies Entered", validator.getExceptionHandler().getErrorLog());
+        assertEquals("ERROR: No Liked Movies Entered", validator.getExceptionHandler().getErrorLog().get(0));
     }
+
+
 }
