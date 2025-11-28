@@ -1,0 +1,4 @@
+The Amazing Spider Man,ADHAM123
+Action,Comedy,Cartoon
+I'm Sam,SAM321
+Drama,Comedy
