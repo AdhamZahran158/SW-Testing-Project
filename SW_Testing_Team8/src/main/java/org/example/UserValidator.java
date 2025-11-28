@@ -24,7 +24,7 @@ public class UserValidator {
         }
         catch (IllegalArgumentException ex)
         {
-            exceptionHandler.logError(ex.getMessage());
+
         }
     }
 
@@ -46,7 +46,7 @@ public class UserValidator {
 
         } catch (IllegalArgumentException e) {
             result = false;
-            exceptionHandler.logError(e.getMessage());
+            
             return result;
         }
         return result;
@@ -81,7 +81,7 @@ public class UserValidator {
 
         } catch (IllegalArgumentException e) {
             result = false;
-            exceptionHandler.logError(e.getMessage());
+            
             return result;
         }
 
