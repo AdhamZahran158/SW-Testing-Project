@@ -92,6 +92,7 @@ public class BottomUpIntegrationTest {
 
         @BeforeEach
         void setUp() {
+
             fileHandler = new FileHandler();
         }
 
