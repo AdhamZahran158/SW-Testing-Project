@@ -37,7 +37,8 @@ Level 5,6: Kirllos
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BottomUpIntegrationTest {
 
-    private final Path testDir = Path.of(System.getProperty("user.dir"));
+    private final String referencePath = "src/test/java/org/example/integration/BottomUp_Text_Test";
+    private final Path testDir = Path.of(System.getProperty("user.dir")).resolve(referencePath);
 
 
     // ==================== LEVEL 1: Basic Models + ExceptionHandler ====================
