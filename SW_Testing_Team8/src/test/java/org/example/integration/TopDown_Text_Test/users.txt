@@ -1,6 +1,2 @@
-Action Fan,1a2b3c4d5
-ACT001
-Comedy Fan,2b3c4d5e6
-COM001
-Mix Fan,3c4d5e6f7
-ACT001,COM001
+John Doe,1a2b3c4d5
+MATR001

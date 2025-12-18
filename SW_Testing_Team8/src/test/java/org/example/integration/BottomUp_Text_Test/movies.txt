@@ -1,6 +1,2 @@
-The Matrix,MATR001
-Action,Sci-Fi
-Inception,INCE002
-Thriller,Sci-Fi
-The Hangover,HANG003
-Comedy
+Test Movie,TM01
+Action,Comedy
