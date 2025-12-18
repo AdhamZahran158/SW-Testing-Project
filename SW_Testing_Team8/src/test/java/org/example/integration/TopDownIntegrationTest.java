@@ -46,8 +46,7 @@ Level 5,6: Andro
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TopDownIntegrationTest {
 
-    @TempDir
-    Path tempDir;
+    private final Path testDir = Path.of(System.getProperty("user.dir"));
 
     private AutoCloseable mocks;
 
