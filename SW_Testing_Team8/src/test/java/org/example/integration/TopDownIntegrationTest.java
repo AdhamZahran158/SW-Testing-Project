@@ -22,20 +22,17 @@ import static org.mockito.Mockito.*;
 
 /**
  * TOP-DOWN INTEGRATION TESTING
- *
  * Top-Down approach starts testing from the highest level module (main application)
- * and progressively integrates lower-level modules using stubs/mocks initially.
- *
+ * and progressively integrates lower-level modules.
  * Testing Order (from top to bottom):
- * Level 1: MovieRecommendationApp (Main) - with stubbed dependencies
- * Level 2: FileHandler, Validators - with stubbed models
- * Level 3: RecommendationEngine - with stubbed data
- * Level 4: FileWriteHandler - with stubbed user data
+ * Level 1: MovieRecommendationApp (Main) - with inline test data (no file I/O)
+ * Level 2: FileHandler + Validators - with real file I/O
+ * Level 3: Validators + ExceptionHandler - real components
+ * Level 4: RecommendationEngine + Models - real components with test data
  * Level 5: Models (Movie, User) - actual implementations
  * Level 6: Full Integration - all real components
- *
- * In Top-Down testing, we use STUBS to simulate lower-level modules
- * until they are integrated.
+ * Note: This test uses TEST DATA (not stubs/mocks) to isolate higher-level
+ * logic before integrating real file I/O in lower levels.
  */
 
 /*
