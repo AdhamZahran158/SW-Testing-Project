@@ -37,8 +37,8 @@ Level 5,6: Kirllos
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BottomUpIntegrationTest {
 
-    @TempDir
-    Path tempDir;
+    private final Path testDir = Path.of(System.getProperty("user.dir"));
+
 
     // ==================== LEVEL 1: Basic Models + ExceptionHandler ====================
 
@@ -89,8 +89,66 @@ public class BottomUpIntegrationTest {
     @DisplayName("Level 3: FileHandler + Movie/User Models Integration")
     @Order(6)
     class Level3_FileHandlerIntegration {
+        private FileHandler fileHandler;
 
+        @BeforeEach
+        void setUp() {
+            fileHandler = new FileHandler();
+        }
 
+        @Test
+        @DisplayName("Read movies from file creates Movie objects correctly")
+        void testReadMoviesCreatesMovieObjects() throws IOException {
+            // Create test movie file
+            Path moviesFile = testDir.resolve("test_movies.txt");
+            String content = "The Matrix,M001\nAction,Sci-Fi\nInception,M002\nThriller,Drama";
+            Files.writeString(moviesFile, content);
+
+            ArrayList<Movie> movies = fileHandler.readMovies(moviesFile.toString());
+
+            assertEquals(2, movies.size());
+            assertEquals("The Matrix", movies.get(0).getTitle());
+            assertEquals("M001", movies.get(0).getMovieID());
+            assertTrue(movies.get(0).getGenres().contains("Action"));
+            assertTrue(movies.get(0).getGenres().contains("Sci-Fi"));
+        }
+
+        @Test
+        @DisplayName("Read users from file creates User objects correctly")
+        void testReadUsersCreatesUserObjects() throws IOException {
+            // Create test user file
+            Path usersFile = testDir.resolve("test_users.txt");
+            String content = "John Doe,123456789\nM001,M002\nJane Smith,987654321\nM002";
+            Files.writeString(usersFile, content);
+
+            ArrayList<User> users = fileHandler.readUser(usersFile.toString());
+
+            assertEquals(2, users.size());
+            assertEquals("John Doe", users.get(0).getName());
+            assertEquals("123456789", users.get(0).getId());
+        }
+
+        @Test
+        @DisplayName("FileHandler integrates Movie and User reading")
+        void testFileHandlerIntegratesMoviesAndUsers() throws IOException {
+            // Create movie file
+            Path moviesFile = testDir.resolve("movies.txt");
+            Files.writeString(moviesFile, "Test Movie,TM01\nAction,Comedy");
+
+            // Create user file
+            Path usersFile = testDir.resolve("users.txt");
+            Files.writeString(usersFile, "Test User,1a2b3c4d5\nTM01");
+
+            ArrayList<Movie> movies = fileHandler.readMovies(moviesFile.toString());
+            ArrayList<User> users = fileHandler.readUser(usersFile.toString());
+
+            // Link users to movies
+            boolean linked = users.get(0).setLikedMovies(movies);
+
+            assertTrue(linked);
+            assertEquals(1, users.get(0).getLikedMovies().size());
+            assertEquals("Test Movie", users.get(0).getLikedMovies().get(0).getTitle());
+        }
     }
 
     // ==================== LEVEL 4: RecommendationEngine with Models ====================
