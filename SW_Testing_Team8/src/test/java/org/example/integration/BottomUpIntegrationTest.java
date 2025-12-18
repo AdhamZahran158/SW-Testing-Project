@@ -39,6 +39,8 @@ public class BottomUpIntegrationTest {
 
     private final String referencePath = "src/test/java/org/example/integration/BottomUp_Text_Test";
     private final Path testDir = Path.of(System.getProperty("user.dir")).resolve(referencePath);
+
+
     // ==================== LEVEL 1: Basic Models + ExceptionHandler ====================
 
     @Nested
@@ -88,7 +90,6 @@ public class BottomUpIntegrationTest {
     @DisplayName("Level 3: FileHandler + Movie/User Models Integration")
     @Order(6)
     class Level3_FileHandlerIntegration {
-
 
     }
 
