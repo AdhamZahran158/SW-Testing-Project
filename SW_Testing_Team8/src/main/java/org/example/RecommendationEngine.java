@@ -25,9 +25,9 @@ public class RecommendationEngine {
                     {
                         if (lgenre.equals(genre))
                         {
-                            if (!likedMovies.contains(m)) {
+
                                 RecMovies.add(m.getTitle());
-                            }
+
                             break;
                         }
 
