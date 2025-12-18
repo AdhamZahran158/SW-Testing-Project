@@ -109,7 +109,54 @@ public class TopDownIntegrationTest {
     @Order(5)
     class Level5_ModelsIntegrationTests {
 
+        @Test
+        @DisplayName("Movie model works with all components")
+        void testMovieModelIntegration() {
+            ArrayList<String> genres = new ArrayList<>(Arrays.asList("Action", "Adventure"));
+            Movie movie = new Movie("Adventure Time", "ADV001", genres);
 
+            // Test with MovieValidator
+            MovieValidator validator = new MovieValidator();
+            assertTrue(validator.validateMovieTitle(movie.getTitle()));
+            assertTrue(validator.validateMovieIdLetters(movie.getMovieID()));
+
+            // Test getters work correctly
+            assertEquals("Adventure Time", movie.getTitle());
+            assertEquals("ADV001", movie.getMovieID());
+            assertEquals(2, movie.getGenres().size());
+        }
+
+        @Test
+        @DisplayName("User model integrates with Movie model")
+        void testUserMovieModelIntegration() {
+            // Create movies
+            ArrayList<String> genres = new ArrayList<>(Arrays.asList("Sci-Fi"));
+            Movie movie = new Movie("Sci Fi Movie", "SF001", genres);
+            ArrayList<Movie> movies = new ArrayList<>(Arrays.asList(movie));
+
+            // Create user
+            ArrayList<String> likedIds = new ArrayList<>(Arrays.asList("SF001"));
+            User user = new User("Sci Fi Fan", "1a2b3c4d5", likedIds);
+
+            // Link movies
+            assertTrue(user.setLikedMovies(movies));
+            assertEquals(1, user.getLikedMovies().size());
+            assertEquals("Sci Fi Movie", user.getLikedMovies().get(0).getTitle());
+        }
+
+        @Test
+        @DisplayName("User model setRecMovies and getRecMovies")
+        void testUserRecMovies() {
+            ArrayList<String> likedIds = new ArrayList<>();
+            User user = new User("Test User", "123456789", likedIds);
+
+            ArrayList<String> recommendations = new ArrayList<>(Arrays.asList("Movie A", "Movie B"));
+            user.setRecMovies(recommendations);
+
+            assertEquals(2, user.getRecMovies().size());
+            assertTrue(user.getRecMovies().contains("Movie A"));
+            assertTrue(user.getRecMovies().contains("Movie B"));
+        }
     }
 
     // ==================== LEVEL 6: Full System Integration ====================
@@ -119,7 +166,200 @@ public class TopDownIntegrationTest {
     @Order(6)
     class Level6_CompleteSystemIntegration {
 
+        @Test
+        @DisplayName("Full system workflow with real components")
+        void testFullSystemWorkflow() throws IOException {
+            // Create test files
+            Path moviesFile = testDir.resolve("movies.txt");
+            Path usersFile = testDir.resolve("users.txt");
 
+            String moviesContent =
+                    "The Matrix,MATR001\n" +
+                            "Action,Sci-Fi\n" +
+                            "Inception,INCE002\n" +
+                            "Thriller,Sci-Fi\n" +
+                            "The Hangover,HANG003\n" +
+                            "Comedy";
+
+            String usersContent =
+                    "John Doe,1a2b3c4d5\n" +
+                            "MATR001\n" +
+                            "Jane Smith,9z8y7x6w5\n" +
+                            "HANG003";
+
+            Files.writeString(moviesFile, moviesContent);
+            Files.writeString(usersFile, usersContent);
+
+            // Initialize all components
+            FileHandler fileHandler = new FileHandler();
+            MovieValidator movieValidator = new MovieValidator();
+            UserValidator userValidator = new UserValidator();
+            RecommendationEngine recommendationEngine = new RecommendationEngine();
+
+            // Read movies
+            ArrayList<Movie> movies = fileHandler.readMovies(moviesFile.toString());
+            assertEquals(3, movies.size());
+
+            // Validate movies
+            boolean hasError = false;
+            for (Movie movie : movies) {
+                if (!movieValidator.validateMovieTitle(movie.getTitle())) {
+                    hasError = true;
+                    break;
+                }
+                movieValidator.getId_list().add(movie.getMovieID());
+            }
+            assertFalse(hasError);
+
+            // Read users
+            ArrayList<User> users = fileHandler.readUser(usersFile.toString());
+            assertEquals(2, users.size());
+
+            // Validate and link users
+            for (User user : users) {
+                assertTrue(userValidator.validateUserName(user.getName()));
+                assertTrue(userValidator.validateUserId(user.getId()));
+                assertTrue(user.setLikedMovies(movies));
+            }
+
+            // Generate recommendations
+            for (User user : users) {
+                recommendationEngine.GetRecommendations(user, movies);
+            }
+
+            // Verify John's recommendations (likes Matrix: Action, Sci-Fi)
+            ArrayList<String> johnRecs = users.get(0).getRecMovies();
+            assertTrue(johnRecs.contains("The Matrix"));
+            assertTrue(johnRecs.contains("Inception")); // Shares Sci-Fi
+            assertFalse(johnRecs.contains("The Hangover")); // No shared genre
+
+            // Verify Jane's recommendations (likes Hangover: Comedy)
+            ArrayList<String> janeRecs = users.get(1).getRecMovies();
+            assertTrue(janeRecs.contains("The Hangover"));
+            assertEquals(1, janeRecs.size()); // Only Comedy movie
+        }
+
+        @Test
+        @DisplayName("Full system with validation errors")
+        void testFullSystemWithValidationErrors() throws IOException {
+            // Create file with invalid movie title
+            Path moviesFile = testDir.resolve("invalid_movies.txt");
+            Files.writeString(moviesFile, "lowercase title,M001\nAction");
+
+            FileHandler fileHandler = new FileHandler();
+            MovieValidator movieValidator = new MovieValidator();
+
+            ArrayList<Movie> movies = fileHandler.readMovies(moviesFile.toString());
+
+            boolean hasError = false;
+            String errorMessage = null;
+
+            for (Movie movie : movies) {
+                if (!movieValidator.validateMovieTitle(movie.getTitle())) {
+                    hasError = true;
+                    errorMessage = movieValidator.getExceptionHandler().getErrorLog().get(0);
+                    break;
+                }
+            }
+
+            assertTrue(hasError);
+            assertNotNull(errorMessage);
+            assertTrue(errorMessage.contains("ERROR"));
+        }
+
+        @Test
+        @DisplayName("Full system with multiple users and complex recommendations")
+        void testFullSystemComplexScenario() throws IOException {
+            Path moviesFile = testDir.resolve("movies.txt");
+            Path usersFile = testDir.resolve("users.txt");
+
+            String moviesContent =
+                    "Action One,ACT001\n" +
+                            "Action\n" +
+                            "Comedy One,COM001\n" +
+                            "Comedy\n" +
+                            "Action Comedy,ACO001\n" +
+                            "Action,Comedy\n" +
+                            "Drama Film,DRA001\n" +
+                            "Drama";
+
+            String usersContent =
+                    "Action Fan,1a2b3c4d5\n" +
+                            "ACT001\n" +
+                            "Comedy Fan,2b3c4d5e6\n" +
+                            "COM001\n" +
+                            "Mix Fan,3c4d5e6f7\n" +
+                            "ACT001,COM001";
+
+            Files.writeString(moviesFile, moviesContent);
+            Files.writeString(usersFile, usersContent);
+
+            // Full workflow
+            FileHandler fileHandler = new FileHandler();
+            MovieValidator movieValidator = new MovieValidator();
+            UserValidator userValidator = new UserValidator();
+            RecommendationEngine engine = new RecommendationEngine();
+
+            ArrayList<Movie> movies = fileHandler.readMovies(moviesFile.toString());
+            ArrayList<User> users = fileHandler.readUser(usersFile.toString());
+
+            // Validate
+            for (Movie movie : movies) {
+                movieValidator.validateMovieTitle(movie.getTitle());
+                movieValidator.getId_list().add(movie.getMovieID());
+            }
+
+            for (User user : users) {
+                userValidator.validateUserName(user.getName());
+                userValidator.validateUserId(user.getId());
+                user.setLikedMovies(movies);
+                engine.GetRecommendations(user, movies);
+            }
+
+            // Action Fan: likes Action One -> gets Action One + Action Comedy
+            ArrayList<String> actionFanRecs = users.get(0).getRecMovies();
+            assertTrue(actionFanRecs.contains("Action One"));
+            assertTrue(actionFanRecs.contains("Action Comedy"));
+            assertEquals(2, actionFanRecs.size());
+
+            // Comedy Fan: likes Comedy One -> gets Comedy One + Action Comedy
+            ArrayList<String> comedyFanRecs = users.get(1).getRecMovies();
+            assertTrue(comedyFanRecs.contains("Comedy One"));
+            assertTrue(comedyFanRecs.contains("Action Comedy"));
+            assertEquals(2, comedyFanRecs.size());
+
+            // Mix Fan: likes both -> gets Action One, Comedy One, Action Comedy
+            ArrayList<String> mixFanRecs = users.get(2).getRecMovies();
+            assertTrue(mixFanRecs.contains("Action One"));
+            assertTrue(mixFanRecs.contains("Comedy One"));
+            assertTrue(mixFanRecs.contains("Action Comedy"));
+            assertEquals(3, mixFanRecs.size());
+        }
+
+        @Test
+        @DisplayName("System handles empty liked movies")
+        void testSystemHandlesEmptyLikedMovies() throws IOException {
+            Path moviesFile = testDir.resolve("movies.txt");
+            Path usersFile = testDir.resolve("users.txt");
+
+            Files.writeString(moviesFile, "Test Movie,TEST001\nAction");
+            Files.writeString(usersFile, "Empty User,1a2b3c4d5\nNONEXISTENT");
+
+            FileHandler fileHandler = new FileHandler();
+            UserValidator userValidator = new UserValidator();
+
+            ArrayList<Movie> movies = fileHandler.readMovies(moviesFile.toString());
+            ArrayList<User> users = fileHandler.readUser(usersFile.toString());
+
+            User user = users.get(0);
+            boolean hasLikedMovies = user.setLikedMovies(movies);
+
+            // Validate that user has liked movies
+            userValidator.validateLikedMovieList(hasLikedMovies);
+
+            assertFalse(hasLikedMovies);
+            assertFalse(userValidator.getExceptionHandler().getErrorLog().isEmpty());
+        }
     }
 }
 
