@@ -32,7 +32,7 @@ public class User {
     public ArrayList<Movie> getLikedMovies() { return likedMovies; }
 
     public boolean setLikedMovies(ArrayList<Movie> availableMovies) {
-        if (likedMoviesId == null||likedMoviesId.isEmpty()) {
+        if (likedMoviesId.isEmpty() || likedMoviesId == null) {
             return false;
         }
         int count = 0;
