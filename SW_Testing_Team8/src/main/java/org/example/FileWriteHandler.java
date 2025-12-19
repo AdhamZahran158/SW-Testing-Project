@@ -3,10 +3,12 @@ import org.Models.Movie;
 import org.Models.User;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class FileWriteHandler {
-    String filePath = "E:\\GitHub\\SW-Testing-Project\\SW_Testing_Team8\\src\\main\\java\\org\\Outputs\\recommendations.txt";
+    private final String filePath = Path.of(System.getProperty("user.dir"), "recommendations.txt").toString();
+    //String filePath = "E:\\GitHub\\SW-Testing-Project\\SW_Testing_Team8\\src\\main\\java\\org\\Outputs\\recommendations.txt";
     String content = "";
     ArrayList<User> users;
     public  FileWriteHandler(ArrayList<User> users)
