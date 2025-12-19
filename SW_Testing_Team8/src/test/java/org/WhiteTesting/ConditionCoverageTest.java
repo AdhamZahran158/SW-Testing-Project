@@ -98,4 +98,53 @@ public class ConditionCoverageTest {
         MovieValidator movieValidator = new MovieValidator();
         assertFalse(movieValidator.validateMovieGenre("Act4ion"));
     }
+
+    @Test
+    @DisplayName("Condition coverage: likedMoviesId.isEmpty() == true")
+    void testEmptyLikedMoviesId() {
+        // isEmpty() → true
+        ArrayList<String> likedMovies = new ArrayList<>();
+
+        User user = new User("Alia", "U018", likedMovies);
+        ArrayList<Movie> availableMovies = new ArrayList<>();
+
+        assertFalse(user.setLikedMovies(availableMovies));
+    }
+
+    @Test
+    @DisplayName("Condition coverage: likedMoviesId.isEmpty() == false")
+    void testNonEmptyLikedMoviesId() {
+        // isEmpty() → false
+        ArrayList<String> likedMovies = new ArrayList<>(Arrays.asList("M018"));
+        User user = new User("Alia", "U018", likedMovies);
+
+        ArrayList<Movie> availableMovies = new ArrayList<>();
+        Movie movie = new Movie("Whiplash", "M018", new ArrayList<>());
+        availableMovies.add(movie);
+
+        assertTrue(user.setLikedMovies(availableMovies));
+        assertEquals(1, user.getLikedMovies().size());
+    }
+
+    @Test
+    @DisplayName("Condition coverage: Objects.equals() true and false")
+    void testMovieIdMatchAndNoMatch() {
+        ArrayList<String> likedMovies = new ArrayList<>(Arrays.asList("M018"));
+        User user = new User("Alia", "U018", likedMovies);
+
+        ArrayList<Movie> availableMovies = new ArrayList<>();
+
+        // Objects.equals → false
+        Movie m1 = new Movie("Movie1", "M001", new ArrayList<>());
+
+        // Objects.equals → true
+        Movie m2 = new Movie("Whiplash", "M018", new ArrayList<>());
+
+        availableMovies.add(m1);
+        availableMovies.add(m2);
+
+        assertTrue(user.setLikedMovies(availableMovies));
+        assertEquals(1, user.getLikedMovies().size());
+    }
 }
+
