@@ -1,4 +1,4 @@
-package org.example.integration;
+package org.integration;
 
 import org.Models.Movie;
 import org.Models.User;
@@ -43,7 +43,7 @@ Level 5,6: Andro
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TopDownIntegrationTest {
 
-    private final String referencePath = "src/test/java/org/example/integration/TopDown_Text_Test";
+    private final String referencePath = "src/test/java/org/integration/TopDown_Text_Test";
     private final Path testDir = Path.of(System.getProperty("user.dir")).resolve(referencePath);
 
     private AutoCloseable mocks;
