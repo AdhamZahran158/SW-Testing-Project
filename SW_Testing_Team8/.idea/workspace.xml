@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="01bc896b-32d4-40c7-9314-0a3b294fd2bb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/WhiteTesting/ConditionCoverageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/WhiteTesting/ConditionCoverageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/WhiteTesting/StatementCoverageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/WhiteTesting/StatementCoverageTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="3716V7XY0dc5PgxRI7lNLjtnyb9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MovieRecommendationApp.executor": "Run",
+    "JUnit.ConditionCoverageTest.executor": "Run",
+    "JUnit.PathCoverageTest.executor": "Run",
+    "JUnit.RecommendationEnginePathCoverageTest.executor": "Run",
+    "JUnit.StatementCoverageTest.testFileHandlerStatementCatchBlock.executor": "Run",
+    "JUnit.StatementCoverageTest.testFileHandlerStatements.executor": "Run",
+    "JUnit.StatementCoverageTest.testMovieStatements.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "WhiteBoxTest-Maged",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/GitHub/SW-Testing-Project/SW_Testing_Team8",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.ConditionCoverageTest">
+    <configuration name="MovieRecommendationApp" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/openjdk-25" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="org.example.MovieRecommendationApp" />
+      <module name="SW_Testing_Team8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConditionCoverageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SW_Testing_Team8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.WhiteTesting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.WhiteTesting" />
+      <option name="MAIN_CLASS_NAME" value="org.WhiteTesting.ConditionCoverageTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PathCoverageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SW_Testing_Team8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.WhiteTesting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.WhiteTesting" />
+      <option name="MAIN_CLASS_NAME" value="org.WhiteTesting.PathCoverageTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RecommendationEnginePathCoverageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SW_Testing_Team8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.WhiteTesting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.WhiteTesting" />
+      <option name="MAIN_CLASS_NAME" value="org.WhiteTesting.RecommendationEnginePathCoverageTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatementCoverageTest.testFileHandlerStatementCatchBlock" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SW_Testing_Team8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.WhiteTesting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.WhiteTesting" />
+      <option name="MAIN_CLASS_NAME" value="org.WhiteTesting.StatementCoverageTest" />
+      <option name="METHOD_NAME" value="testFileHandlerStatementCatchBlock" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatementCoverageTest.testFileHandlerStatements" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SW_Testing_Team8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.WhiteTesting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.WhiteTesting" />
+      <option name="MAIN_CLASS_NAME" value="org.WhiteTesting.StatementCoverageTest" />
+      <option name="METHOD_NAME" value="testFileHandlerStatements" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ConditionCoverageTest" />
+        <item itemvalue="JUnit.PathCoverageTest" />
+        <item itemvalue="JUnit.RecommendationEnginePathCoverageTest" />
+        <item itemvalue="JUnit.StatementCoverageTest.testFileHandlerStatements" />
+        <item itemvalue="JUnit.StatementCoverageTest.testFileHandlerStatementCatchBlock" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="01bc896b-32d4-40c7-9314-0a3b294fd2bb" name="Changes" comment="" />
+      <created>1766058251233</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1766058251233</updated>
+    </task>
+    <servers />
+  </component>
+</project>
